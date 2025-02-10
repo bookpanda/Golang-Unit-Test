@@ -1,7 +1,11 @@
 package user
 
-type UserService struct{}
+type UserService interface {
+	GetUser(userId string) (User, error)
+}
 
-func (us *UserService) GetUser(userId string) (User, error) {
-    return User{ID: userId, Name: "John Doe"}, nil
+type UserServiceImpl struct{}
+
+func (us *UserServiceImpl) GetUser(userId string) (User, error) {
+	return User{ID: userId, Name: "John Doe"}, nil
 }
